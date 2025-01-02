@@ -8,7 +8,46 @@
     <bean id="emailService" class="org.spring.example.service.EmailService"/>
 
     <!-- Define the MessageProcessor bean and inject the EmailService dependency -->
-    <bean id="messageProcessor" class="org.spring.example.consumer.MessageProcessor">
-        <constructor-arg ref="emailService"/>
+    <bean id="messageProcessor" class="org.spring.example.consumer.MessageProcessor" ><!--init-method="myInit" destroy-method="myDestroy"-->
+    <constructor-arg ref="emailService"/>
+
+
+    <!--  setter based injection -->
+    <!-- Define the MessageProcessor bean and inject the EmailService dependency using setter method -->
+    <!--<bean id="messageProcessor" class="com.example.consumer.MessageProcessor">
+        <property name="messageService" ref="emailService"/>-->
+
+
+        <!--Instantiation: The Spring container creates an instance of the bean using
+        the no-argument constructor or a static factory method.
+
+        Populate Properties: The container populates the properties of the bean using dependency injection,
+        either through constructor-based or setter-based injection.
+
+        Set Bean Name: If the bean implements the BeanNameAware interface,
+        the container calls the setBeanName method, passing the bean's ID.
+
+        Set Bean Factory: If the bean implements the BeanFactoryAware interface, the container calls
+        the setBeanFactory method, passing an instance of the BeanFactory.
+
+        Set Application Context: If the bean implements the ApplicationContextAware interface,
+        the container calls the setApplicationContext method, passing an instance of the ApplicationContext.
+
+        Bean Post-Processors: The container applies any BeanPostProcessor beans to the bean instance.
+        The postProcessBeforeInitialization method is called before any initialization callbacks.
+
+        Initialization Callbacks: The container initializes the bean by calling the afterPropertiesSet method
+        if the bean implements the InitializingBean interface, or by calling any custom initialization methods
+        specified using the @PostConstruct annotation or in the XML configuration.
+
+        Bean Post-Processors After Initialization: The container applies the postProcessAfterInitialization method of
+        any BeanPostProcessor beans.
+
+        Ready to Use: The bean is now fully initialized and ready for use by the application.
+
+        Destruction: When the container shuts down, it destroys the beans. The container calls the destroy method
+        if the bean implements the DisposableBean interface or any custom destroy methods specified using the
+        @PreDestroy annotation or in the XML configuration.-->
+
     </bean>
 </beans>
