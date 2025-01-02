@@ -1,0 +1,14 @@
+<!-- applicationContext.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Define the EmailService bean -->
+    <bean id="emailService" class="org.spring.example.service.EmailService"/>
+
+    <!-- Define the MessageProcessor bean and inject the EmailService dependency -->
+    <bean id="messageProcessor" class="org.spring.example.consumer.MessageProcessor">
+        <constructor-arg ref="emailService"/>
+    </bean>
+</beans>
